@@ -1,2 +1,5 @@
 # enviroment files
 .env
+
+# vendor directory
+/vendor/
