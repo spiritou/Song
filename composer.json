@@ -1,0 +1,11 @@
+{
+    "name": "spiritou/song",
+    "description": "A simple PHP MVC library for handling songs",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {}
+}
