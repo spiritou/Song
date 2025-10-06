@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Song_model;  
+use App\Models;  
 use App\Core\Database;
 
 class Song {
