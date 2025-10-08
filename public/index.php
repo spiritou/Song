@@ -5,8 +5,13 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../config/config.php';
 
 Use App\Core\Database;
+Use App\Core\Router;
 
 $pdo = new Database();
 $conn = $pdo->getConnection();
 
 var_dump($conn);
+
+$router = new Router();
+$router->get('/', 'thisisatest@function');
+$router->run();
