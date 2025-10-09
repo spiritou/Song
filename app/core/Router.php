@@ -25,7 +25,12 @@ class Router
 
         if(isset($callback))
         {
-            echo "this is callback";
+            // echo "this is callback";
+            list($controller, $function) = explode('@', $callback);
+            $controller = "App\\Controllers\\" . $controller;
+            $controllerInstance = new $controller();
+            // $controllerInstance->$function();
+            var_dump($controllerInstance);
         }
         else
         {
