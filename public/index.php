@@ -6,6 +6,7 @@ require_once __DIR__ . '/../config/config.php';
 
 Use App\Core\Database;
 Use App\Core\Router;
+use App\Controllers\Songcontroller;
 
 $pdo = new Database();
 $conn = $pdo->getConnection();
@@ -13,5 +14,5 @@ $conn = $pdo->getConnection();
 var_dump($conn);
 
 $router = new Router();
-$router->get('/', 'thisisatest@function');
+$router->get('/', 'Songcontroller@index');
 $router->run();
