@@ -16,7 +16,8 @@ class Songcontroller
     public function index()
     {
         
-        return $this->songModel->mockfunction();
+        //return $this->songModel->mockfunction();
+        require_once __DIR__ . '/../Views/songform.php';
     }
     
 }
