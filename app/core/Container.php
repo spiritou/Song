@@ -25,5 +25,6 @@ class container
             }
            
         }
+        return $container->newInstanceArgs($dependencies);
     }
 }

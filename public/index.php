@@ -7,12 +7,18 @@ require_once __DIR__ . '/../config/config.php';
 Use App\Core\Database;
 Use App\Core\Router;
 use App\Controllers\Songcontroller;
+use App\Core\Container;
 
-$pdo = new Database();
-$conn = $pdo->getConnection();
+/*$pdo = new Database();
+  $conn = $pdo->getConnection();
 
-var_dump($conn);
+  var_dump($conn);
 
 $router = new Router();
+$router->get('/', 'Songcontroller@index');
+$router->run();*/
+
+$container = new Container();
+$router = $container->get(Router::class);
 $router->get('/', 'Songcontroller@index');
 $router->run();
