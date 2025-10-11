@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<script src="<?= $_ENV['APP_URL'] ?>/js/song.js"></script>
 <body>
-    <h1>Welcome to the Homepage</h1>
+    <h1>Song List</h1>
+    <input type="text" id="songName" placeholder="Enter song name">
+    <button id="addBtn">Add Song</button>
+    <ul id="songList"></ul>
 </body>
 </html>
