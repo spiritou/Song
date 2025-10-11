@@ -4,7 +4,7 @@ ini_set('display_errors',1);
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../config/config.php';
 
-Use App\Core\Database;
+//Use App\Core\Database;
 Use App\Core\Router;
 use App\Controllers\Songcontroller;
 use App\Core\Container;

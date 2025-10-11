@@ -20,6 +20,10 @@ class Song {
         return $stmt->execute();
     }
 
+    public function mockfunction() {
+        echo "This is a mock function in the Song model.";
+    }   
+
 
     
 }
