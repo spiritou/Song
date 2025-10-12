@@ -7,7 +7,7 @@ button.addEventListener('click', async () => {
     if (!songName) return alert('Please enter a song name');
 
     try {
-        const response = await fetch('/Song/public/api/songs', {
+        const response = await fetch(`${APP_URL}/api/songs`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name: songName })
