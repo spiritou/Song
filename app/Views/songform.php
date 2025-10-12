@@ -10,9 +10,9 @@
     <input type="text" id="songName" placeholder="Enter song name">
     <button id="addBtn">Add Song</button>
     <ul id="songList"></ul>
-    <script>
-        const APP_URL = "<?= $_ENV['APP_URL'] ?>";
-    </script>
-    <script src="<?= $_ENV['APP_URL'] ?>/js/song.js"></script>
+    <!-- <script>
+         const APP_URL = "<?= $_ENV['APP_URL'] ?>";
+    </script> -->
+    <script src="js/song.js"></script>
 </body>
 </html>
