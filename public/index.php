@@ -21,6 +21,8 @@ $router->run();*/
 $container = new Container();
 $router = $container->get(Router::class);
 $router->get('/', 'Songcontroller@index');
+$router->post('/api/songs', 'Songcontroller@store');
+// $router->run();
 list($controller, $function) = $router->run();
 $controller = "App\\Controllers\\".$controller;
 $controllerInstance = $container->get($controller);
