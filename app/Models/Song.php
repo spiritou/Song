@@ -20,8 +20,12 @@ class Song {
         return $stmt->execute();
     }
 
-    public function mockfunction() {
-        echo "This is a mock function in the Song model.";
+    public function readall() 
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM songs");
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+       
     }   
 
 
