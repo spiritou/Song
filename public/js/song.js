@@ -24,3 +24,27 @@ button.addEventListener('click', async () => {
         console.error('Error:', err);
     }
 });
+
+// Fetch and display existing songs on page load
+
+async function fetchSongs() {
+    try {
+        const response = await fetch('api/songs');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const songs = await response.json();
+        const songList = document.getElementById('songList');
+
+        list.innerHTML = ''; // Clear existing list
+        songs.forEach(song => {
+            const li = document.createElement('li');
+            li.textContent = song.name;
+            songList.appendChild(li);
+        });
+    } catch (err) {
+        console.error('Error fetching songs:', err);
+    }
+}
+
+fetchSongs();
+
+setInterval(fetchSongs, 30000); // Refresh every 30 seconds
