@@ -33,4 +33,11 @@ class Songcontroller
         $this->songModel->save($name);
         echo json_encode(['success' => true, 'message' => 'Song added successfully']);
     }
+
+    public function getAllsongs()
+    {
+        header('Content-Type: application/json');
+        $songs = $this->songModel->getAll();
+        echo json_encode($songs);
+    }
 }

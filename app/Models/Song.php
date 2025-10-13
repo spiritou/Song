@@ -20,9 +20,9 @@ class Song {
         return $stmt->execute();
     }
 
-    public function readall() 
+    public function getAll() 
     {
-        $stmt = $this->conn->prepare("SELECT * FROM songs");
+        $stmt = $this->conn->prepare("SELECT * FROM songs ORDER BY id DESC");
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
        
