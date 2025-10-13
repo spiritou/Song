@@ -12,20 +12,11 @@ Use App\Core\Router;
 use App\Controllers\Songcontroller;
 use App\Core\Container;
 
-/*$pdo = new Database();
-  $conn = $pdo->getConnection();
-
-  var_dump($conn);
-
-$router = new Router();
-$router->get('/', 'Songcontroller@index');
-$router->run();*/
-
 $container = new Container();
 $router = $container->get(Router::class);
 $router->get('/', 'Songcontroller@index');
 $router->post('/api/songs', 'Songcontroller@store');
-// $router->run();
+$router->get('/api/songs', 'Songcontroller@getAllsongs');
 list($controller, $function) = $router->run();
 $controller = "App\\Controllers\\".$controller;
 $controllerInstance = $container->get($controller);
