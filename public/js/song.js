@@ -34,7 +34,7 @@ async function fetchSongs() {
         const songs = await response.json();
         const songList = document.getElementById('songList');
 
-        list.innerHTML = ''; // Clear existing list
+        songList.innerHTML = ''; // Clear existing list
         songs.forEach(song => {
             const li = document.createElement('li');
             li.textContent = song.name;
