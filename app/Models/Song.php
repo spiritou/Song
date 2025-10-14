@@ -27,6 +27,21 @@ class Song {
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }   
 
+    public function delete($id) 
+    {
+        $stmt = $this->conn->prepare("DELETE FROM songs WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function update($id, $name) 
+    {
+        $stmt = $this->conn->prepare("UPDATE songs SET name = :name WHERE id = :id");
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
 
     
 }
