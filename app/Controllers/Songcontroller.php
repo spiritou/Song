@@ -40,4 +40,18 @@ class Songcontroller
         $songs = $this->songModel->getAll();
         echo json_encode($songs);
     }
+
+    public function delete()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $id = $data['id'] ?? null;
+        if(!$id) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Song ID is required']);
+            return;
+        }
+
+        $this->songModel->delete($id);
+        echo json_encode(['success' => true, 'message' => 'Song deleted successfully']);
+    }
 }
