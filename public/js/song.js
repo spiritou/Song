@@ -37,7 +37,7 @@ async function fetchSongs() {
         const songs = await response.json();
         const songList = document.getElementById('songList');
 
-        songList,list.innerHTML = ''; // Clear existing list
+        songList.list.innerHTML = ''; // Clear existing list
         songs.forEach(song => {
             // const li = document.createElement('li');
             // li.textContent = song.name;
@@ -61,4 +61,4 @@ function createSongElement(song) {
 }
 fetchSongs();
 
-setInterval(fetchSongs, 30000); // Refresh every 30 seconds
+setInterval(fetchSongs, 5000); // Refresh every 30 seconds
