@@ -16,9 +16,12 @@ button.addEventListener('click', async () => {
         const data = await response.json();
         if (data.error) return alert(data.error);
 
-        const li = document.createElement('li');
-        li.textContent = songName;
+        // const li = document.createElement('li');
+        // li.textContent = songName;
+        const newSong = {name: songName};
+        const li = createSongElement(newSong);
         songList.appendChild(li);
+        
         input.value = '';
     } catch (err) {
         console.error('Error:', err);
@@ -36,8 +39,9 @@ async function fetchSongs() {
 
         songList,list.innerHTML = ''; // Clear existing list
         songs.forEach(song => {
-            const li = document.createElement('li');
-            li.textContent = song.name;
+            // const li = document.createElement('li');
+            // li.textContent = song.name;
+            const li = createSongElement(song);
             songList.appendChild(li);
         });
     } catch (err) {
@@ -45,6 +49,16 @@ async function fetchSongs() {
     }
 }
 
+function createSongElement(song) {
+    const li = document.createElement('li');
+    li.textContent = song.name;
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.style.marginLeft = '10px';
+    li.appendChild(deleteBtn);
+    return li;
+}
 fetchSongs();
 
 setInterval(fetchSongs, 30000); // Refresh every 30 seconds
