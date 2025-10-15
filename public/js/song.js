@@ -37,12 +37,13 @@ async function fetchSongs() {
         const songs = await response.json();
         const songList = document.getElementById('songList');
 
-        songList.list.innerHTML = ''; // Clear existing list
+        songList.innerHTML = ''; // Clear existing list
         songs.forEach(song => {
             // const li = document.createElement('li');
             // li.textContent = song.name;
             const li = createSongElement(song);
             songList.appendChild(li);
+            console.log(song);
         });
     } catch (err) {
         console.error('Error fetching songs:', err);
