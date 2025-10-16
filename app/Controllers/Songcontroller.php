@@ -54,4 +54,20 @@ class Songcontroller
         $this->songModel->delete($id);
         echo json_encode(['success' => true, 'message' => 'Song deleted successfully']);
     }
+
+    public function update()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $id = $data['id'] ?? null;
+        $name = $data['name'] ?? null;
+
+        if(!$id || trim($name) === '') {
+            http_response_code(400);
+            echo json_encode(['error' => 'Song ID and name are required']);
+            return;
+        }
+
+        $this->songModel->update($id, $name);
+        echo json_encode(['success' => true, 'message' => 'Song updated successfully']);
+    }
 }
