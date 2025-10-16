@@ -59,6 +59,11 @@ function createSongElement(song) {
     deleteBtn.style.marginLeft = '10px';
     li.appendChild(deleteBtn);
 
+    const updateBtn = document.createElement('button');
+    updateBtn.textContent = 'Update';
+    updateBtn.style.marginLeft = '10px';
+    li.appendChild(updateBtn);
+
     deleteBtn.addEventListener('click', async () => {
         console.log(`URL being fetched: api/songs/${song.id}`);
         try {
