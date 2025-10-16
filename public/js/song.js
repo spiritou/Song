@@ -58,6 +58,24 @@ function createSongElement(song) {
     deleteBtn.textContent = 'Delete';
     deleteBtn.style.marginLeft = '10px';
     li.appendChild(deleteBtn);
+
+    deleteBtn.addEventListener('click', async () => {
+        try {
+            const response = await fetch(`api/songs/${song.id}`, {
+                method: 'DELETE'
+            });
+
+            const data = await response.json();
+
+            if(data.success) {
+                li.remove();
+            } else {
+                alert(data.error || 'Failed to delete the song');
+            }
+        } catch (err) {
+            console.error('Error deleting song:', err);
+        }
+    });
     return li;
 }
 fetchSongs();
