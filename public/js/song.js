@@ -60,6 +60,7 @@ function createSongElement(song) {
     li.appendChild(deleteBtn);
 
     deleteBtn.addEventListener('click', async () => {
+        console.log(`URL being fetched: api/songs/${song.id}`);
         try {
             const response = await fetch(`api/songs/${song.id}`, {
                 method: 'DELETE'

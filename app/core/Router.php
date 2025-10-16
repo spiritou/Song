@@ -16,6 +16,11 @@ class Router
         $this->routes['POST'][$path] = $callback;
     }
 
+    public function delete($path, $callback)
+    {
+        $this->routes['DELETE'][$path] = $callback;
+    }
+
     public function run()
     {
         $method = $_SERVER['REQUEST_METHOD'];
