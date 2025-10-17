@@ -106,12 +106,13 @@ function createSongElement(song) {
 
         saveBtn.addEventListener('click', async () => {
             startPolling();
-            if (!song.name) return alert('Please enter a song name');
+            const newName = input.value.trim();
+            if (!newName) return alert('Please enter a song name');
 
             const response = await fetch('api/songs', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: song.id, name: song.name })
+                body: JSON.stringify({ id: song.id, name: newName })
             });
 
             const data = await response.json();
@@ -135,7 +136,7 @@ function createSongElement(song) {
 let pollingInterval;
 
 function startPolling() {
-    pollingInterval = setInterval(fetchSongs, 5000); // 30 seconds
+    pollingInterval = setInterval(fetchSongs, 5000); // 5 seconds
 }
 
 function stopPolling() {
