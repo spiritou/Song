@@ -105,7 +105,7 @@ function createSongElement(song) {
         li.appendChild(cancelBtn);
 
         saveBtn.addEventListener('click', async () => {
-            const updatedName = input.value.trim();
+            startPolling();
             if (!updatedName) return alert('Please enter a song name');
 
             const response = await fetch('api/songs', {
