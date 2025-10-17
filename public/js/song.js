@@ -86,6 +86,7 @@ function createSongElement(song) {
     });
 
     updateBtn.addEventListener('click', () => {
+        console.log(`Updating song with id: ${song.id}`);
         const input = document.createElement('input');
         input.type = 'text';
         input.value = song.name;
