@@ -106,12 +106,12 @@ function createSongElement(song) {
 
         saveBtn.addEventListener('click', async () => {
             startPolling();
-            if (!updatedName) return alert('Please enter a song name');
+            if (!song.name) return alert('Please enter a song name');
 
             const response = await fetch('api/songs', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: song.id, name: updatedName })
+                body: JSON.stringify({ id: song.id, name: song.name })
             });
 
             const data = await response.json();
