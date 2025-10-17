@@ -86,7 +86,8 @@ function createSongElement(song) {
     });
 
     updateBtn.addEventListener('click', () => {
-        console.log(`Updating song with id: ${song.id}`);
+
+        stopPolling();
         const input = document.createElement('input');
         input.type = 'text';
         input.value = song.name;
@@ -130,6 +131,15 @@ function createSongElement(song) {
     });
     return li;
 }
-fetchSongs();
 
-setInterval(fetchSongs, 5000); // Refresh every 30 seconds
+let pollingInterval;
+
+function startPolling() {
+    pollingInterval = setInterval(fetchSongs, 5000); // 30 seconds
+}
+
+function stopPolling() {
+    clearInterval(pollingInterval);
+}
+
+fetchSongs();
