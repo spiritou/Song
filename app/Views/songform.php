@@ -6,9 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Song List</h1>
+    <h1>Song</h1>
     <input type="text" id="songName" placeholder="Enter song name">
-    <button id="addBtn">Add Song</button>
+    <button id="addBtn">add</button>
     <ul id="songList"></ul>
     <!-- <script>
          const APP_URL = "<?= $_ENV['APP_URL'] ?>";

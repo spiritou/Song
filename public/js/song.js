@@ -84,6 +84,49 @@ function createSongElement(song) {
             console.error('Error deleting song:', err);
         }
     });
+
+    updateBtn.addEventListener('click', () => {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = song.name;
+       
+        const saveBtn = document.createElement('button');
+        saveBtn.textContent = 'Save';
+        saveBtn.style.marginLeft = '10px';
+        const cancelBtn = document.createElement('button');
+        cancelBtn.textContent = 'Cancel';
+        cancelBtn.style.marginLeft = '10px';
+
+        li.innerHTML = '';
+        li.appendChild(input);
+        li.appendChild(saveBtn);
+        li.appendChild(cancelBtn);
+
+        saveBtn.addEventListener('click', async () => {
+            const updatedName = input.value.trim();
+            if (!updatedName) return alert('Please enter a song name');
+
+            const response = await fetch('api/songs', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: song.id, name: updatedName })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                song.name = newName;
+                const updatedLi = createSongElement(song);
+                li.replaceWith(updatedLi);
+            } else {
+                alert(data.error || 'Failed to update the song');
+            }
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            const originalLi = createSongElement(song);
+            li.replaceWith(originalLi);
+        });
+    });
     return li;
 }
 fetchSongs();
