@@ -25,5 +25,7 @@ list($callback, $params) = $router->run();
 list($controller, $function) = explode('@', $callback);
 $controller = "App\\Controllers\\".$controller;
 $controllerInstance = $container->get($controller);
-$controllerInstance->$function();
+//$controllerInstance->$function();
+
+call_user_func_array([$controllerInstance, $function], $params);
 
