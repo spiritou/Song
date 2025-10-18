@@ -41,12 +41,27 @@ class Router
             $controllerInstance = new $controller();
             // $controllerInstance->$function();
             // var_dump($controllerInstance);
-            $controllerInstance->$function();*/
-        }
-        else
-        {
+            $controllerInstance->function();*/
             http_response_code(404);
             echo "404 Not Found";
+            return;
         }
+        // else
+        // {
+        //     http_response_code(404);
+        //     echo "404 Not Found";
+        // }
+
+        foreach ($this->routes[$method] as $route=>$callback) {
+            $pattern = preg_replace('#\{([^\}]+)\}#', '([^/]+)', $route);
+            $pattern = '#^' . $pattern . '$#';
+            if (preg_match($pattern, $path, $matches)) {
+                array_shift($matches); // Remove the full match
+
+                return [$callback, $matches];
+        }
+    }
+        http_response_code(404);
+        echo "404 Not Found";
     }
 }
