@@ -31,12 +31,12 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $path = str_replace('/Song/public', '', $path); // Adjust base path as needed
-        $callback = $this->routes[$method][$path] ?? null;
+        //$callback = $this->routes[$method][$path] ?? null;
 
-        if(isset($callback))
+        if(!isset($this->routes[$method]))
         {
             // echo "this is callback";
-            return explode('@', $callback);
+            //return explode('@', $callback);
             /*$controller = "App\\Controllers\\".$controller;
             $controllerInstance = new $controller();
             // $controllerInstance->$function();
