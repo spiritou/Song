@@ -70,4 +70,9 @@ class Songcontroller
         $this->songModel->update($id, $name);
         echo json_encode(['success' => true, 'message' => 'Song updated successfully']);
     }
+
+    public function show($id) 
+    {
+        echo "You requested song with ID: " . $id;
+    }
 }
