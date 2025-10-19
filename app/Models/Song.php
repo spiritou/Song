@@ -42,6 +42,14 @@ class Song {
         return $stmt->execute();
     }
 
+    public function find($id) 
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM songs WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
 
     
 }
