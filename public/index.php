@@ -17,7 +17,7 @@ $router = $container->get(Router::class);
 $router->get('/', 'Songcontroller@index');
 $router->post('/api/songs', 'Songcontroller@store');
 $router->get('/api/songs', 'Songcontroller@getAllsongs');
-$router->delete('/api/songs', 'Songcontroller@delete');
+$router->delete('/api/songs{id}', 'Songcontroller@delete');
 $router->put('/api/songs', 'Songcontroller@update');
 $router->get('/api/songs/{id}', 'Songcontroller@show');
 // list($controller, $function) = $router->run();
