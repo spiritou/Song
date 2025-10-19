@@ -67,10 +67,10 @@ function createSongElement(song) {
     deleteBtn.addEventListener('click', async () => {
         console.log(`URL being fetched: api/songs/${song.id}`);
         try {
-            const response = await fetch('api/songs', {
+            const response = await fetch(`api/songs/${song.id}`, {
                 method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: song.id })
+                // headers: { 'Content-Type': 'application/json' },
+                // body: JSON.stringify({ id: song.id })
             });
 
             const data = await response.json();
