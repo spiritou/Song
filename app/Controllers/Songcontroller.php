@@ -62,6 +62,7 @@ class Songcontroller
     {
         $data = json_decode(file_get_contents('php://input'), true);
         $success = $this->songModel->update($id, $data['name']);
+        echo json_encode(['success' => $success]);
     }
 
     public function show($id) 
