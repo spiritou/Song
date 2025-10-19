@@ -58,20 +58,10 @@ class Songcontroller
         echo json_encode(['success' => $success]);
     }
 
-    public function update()
+    public function update($id)
     {
         $data = json_decode(file_get_contents('php://input'), true);
-        $id = $data['id'] ?? null;
-        $name = $data['name'] ?? null;
-
-        if(!$id || trim($name) === '') {
-            http_response_code(400);
-            echo json_encode(['error' => 'Song ID and name are required']);
-            return;
-        }
-
-        $this->songModel->update($id, $name);
-        echo json_encode(['success' => true, 'message' => 'Song updated successfully']);
+        $success = $this->songModel->update($id, $data['name']);
     }
 
     public function show($id) 
