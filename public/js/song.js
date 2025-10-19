@@ -109,10 +109,10 @@ function createSongElement(song) {
             const newName = input.value.trim();
             if (!newName) return alert('Please enter a song name');
 
-            const response = await fetch('api/songs', {
+            const response = await fetch(`api/songs/${song.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: song.id, name: newName })
+                body: JSON.stringify({ name: newName })
             });
 
             const data = await response.json();
