@@ -144,3 +144,5 @@ function stopPolling() {
 }
 
 fetchSongs();
+
+// i'll refactor the fetchSongs function to only update the list if there are changes later
