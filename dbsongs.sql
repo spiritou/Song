@@ -34,14 +34,6 @@ CREATE TABLE `songs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `songs`
---
-
-INSERT INTO `songs` (`id`, `name`, `last_update`) VALUES
-(55, 'Reality', '2025-10-21 19:51:55'),
-(58, 'Minimiser', '2025-10-21 19:51:55');
-
---
 -- Indexes for dumped tables
 --
 
