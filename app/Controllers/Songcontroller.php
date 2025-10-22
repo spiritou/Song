@@ -38,7 +38,16 @@ class Songcontroller
     {
         header('Content-Type: application/json');
         $songs = $this->songModel->getAll();
-        echo json_encode($songs);
+
+        $last_update = null;
+        if (!empty($songs)) {
+            $last_update = $songs[0]['last_update'];
+        }
+
+        echo json_encode([
+            'songs' => $songs, 
+            'last_update' => $last_update
+        ]);
     }
 
     public function delete($id)

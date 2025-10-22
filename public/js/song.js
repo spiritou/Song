@@ -16,8 +16,6 @@ button.addEventListener('click', async () => {
         const data = await response.json();
         if (data.error) return alert(data.error);
 
-        // const li = document.createElement('li');
-        // li.textContent = songName;
         const newSong = {name: songName};
         const li = createSongElement(newSong);
         songList.appendChild(li);
@@ -39,8 +37,6 @@ async function fetchSongs() {
 
         songList.innerHTML = ''; // Clear existing list
         songs.forEach(song => {
-            // const li = document.createElement('li');
-            // li.textContent = song.name;
             const li = createSongElement(song);
             songList.appendChild(li);
             console.log(song);
