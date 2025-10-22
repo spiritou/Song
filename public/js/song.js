@@ -142,6 +142,7 @@ function createSongElement(song) {
 let pollingInterval;
 
 function startPolling() {
+    stopPolling();
     pollingInterval = setInterval(fetchSongs, 5000); // 5 seconds
 }
 
@@ -150,5 +151,6 @@ function stopPolling() {
 }
 
 fetchSongs();
+startPolling();
 
 // i'll refactor the fetchSongs function to only update the list if there are changes later
