@@ -1,6 +1,7 @@
 const button = document.getElementById('addBtn');
 const input = document.getElementById('songName');
 const songList = document.getElementById('songList');
+let lastUpdate = null;
 
 button.addEventListener('click', async () => {
     const songName = input.value.trim();
@@ -31,9 +32,18 @@ button.addEventListener('click', async () => {
 async function fetchSongs() {
     try {
         const response = await fetch('api/songs');
-        if (!response.ok) throw new Error('Network response was not ok');
-        const songs = await response.json();
-        const songList = document.getElementById('songList');
+        // if (!response.ok) throw new Error('Network response was not ok');
+        // const songs = await response.json();
+        // const songList = document.getElementById('songList');
+
+        const data = await response.json();
+        if (lastUpdate === data.last_update) {
+            console.log('No changes detected, skipping update.');
+            return; // No changes, skip updating the list
+        }
+        lastUpdate = data.last_update;
+
+        const songs = data.songs;
 
         songList.innerHTML = ''; // Clear existing list
         songs.forEach(song => {
