@@ -69,4 +69,5 @@ class Songcontroller
     }
 
     /* i'll have to refactor my code, in order to introduce the delta */
+    /* how will delta polling work here ? */
 }
