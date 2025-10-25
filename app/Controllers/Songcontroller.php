@@ -68,6 +68,22 @@ class Songcontroller
         echo "You requested song with ID: " . $id;
     }
 
-    /* i'll have to refactor my code, in order to introduce the delta */
-    /* how will delta polling work here ? */
+    public function getChanges()
+    {
+        header('Content-Type: application/json');
+        $since = $_GET['since'] ?? null;
+
+        if(!$since) {
+            echo json_encode(['error' => 'Missing timestamp']);
+            return;
+        }
+
+        $changes = $this->songModel->getChangesSince($since);
+        $last_update = !empty($changes) ? $changes[0]['last_update'] : $since;
+
+        echo json_encode([
+            'changes' => $changes,
+            'last_update' => $last_update
+        ]);
+    }
 }
