@@ -20,6 +20,7 @@ $router->get('/api/songs', 'Songcontroller@getAllsongs');
 $router->delete('/api/songs/{id}', 'Songcontroller@delete');
 $router->put('/api/songs/{id}', 'Songcontroller@update');
 $router->get('/api/songs/{id}', 'Songcontroller@show');
+$router->get('/api/songs/changes', 'Songcontroller@getChanges');
 // list($controller, $function) = $router->run();
 list($callback, $params) = $router->run();
 list($controller, $function) = explode('@', $callback);
