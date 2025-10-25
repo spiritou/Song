@@ -50,6 +50,19 @@ class Song {
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    
+    public function getChangesSince($since) 
+    {
+        $stmt = $this->conn->prepare(
+            "SELECT id, name, last_update 
+             FROM songs 
+             WHERE last_update > :since 
+             ORDER BY last_update DESC"
+        );
+        $stmt->bindParam(':since', $since);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
     
 }
