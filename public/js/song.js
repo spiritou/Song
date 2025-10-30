@@ -32,10 +32,6 @@ button.addEventListener('click', async () => {
 async function fetchSongs() {
     try {
         const response = await fetch('api/songs');
-        // if (!response.ok) throw new Error('Network response was not ok');
-        // const songs = await response.json();
-        // const songList = document.getElementById('songList');
-
         const data = await response.json();
         if (lastUpdate === data.last_update) {
             console.log('No changes detected, skipping update.');
