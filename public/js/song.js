@@ -71,8 +71,6 @@ function createSongElement(song) {
         try {
             const response = await fetch(`api/songs/${song.id}`, {
                 method: 'DELETE'
-                // headers: { 'Content-Type': 'application/json' },
-                // body: JSON.stringify({ id: song.id })
             });
 
             const data = await response.json();
