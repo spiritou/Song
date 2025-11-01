@@ -50,14 +50,27 @@ class Song {
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function getChangesSince()
+    public function getChangesSince($since)
     {
-        echo "Not implemented yet";
+        $stmt = $this->conn->prepare("
+        SELECT id, name, last_update
+        FROM songs
+        WHERE last_update > :since
+        ORDER BY last_update DESC
+        ");
+        $stmt->bindParam(':since', $since);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getLastUpdate()
     {
-        echo "Not implemented yet";
+        $stmt = $this->conn->prepare("
+        SELECT MAX(last_update) as latest FROM songs
+        ");
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['latest'] ?? null;
     }
 
     
