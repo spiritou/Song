@@ -17,7 +17,7 @@ $router = $container->get(Router::class);
 $router->get('/', 'Songcontroller@index');
 $router->post('/api/songs', 'Songcontroller@store');
 $router->get('/api/songs', 'Songcontroller@getAllsongs');
-$router->get('/api/songs/changes/{since}', 'Songcontroller@getChangesSince');
+$router->get('/api/songs/changes', 'Songcontroller@getChangesSince');
 $router->delete('/api/songs/{id}', 'Songcontroller@delete');
 $router->put('/api/songs/{id}', 'Songcontroller@update');
 $router->get('/api/songs/{id}', 'Songcontroller@show');
