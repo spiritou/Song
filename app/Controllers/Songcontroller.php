@@ -67,4 +67,21 @@ class Songcontroller
     {
         echo "You requested song with ID: " . $id;
     }
+
+    public function getChanges()
+    {
+        header('Content-Type: application/json');
+        
+        if(!isset($_GET['since']))
+        {
+            echo json_encode(['error' => 'Missing "since" parameter']);
+            return;
+        }
+
+        $since = $_GET['since'];
+        $changes = $this->songModel->getChangesSince($since);
+
+        
+
+    }
 }

@@ -50,6 +50,15 @@ class Song {
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function getChangesSince()
+    {
+        echo "Not implemented yet";
+    }
+
+    public function getLastUpdate()
+    {
+        echo "Not implemented yet";
+    }
 
     
 }
