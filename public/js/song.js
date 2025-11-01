@@ -30,26 +30,57 @@ button.addEventListener('click', async () => {
 // Fetch and display existing songs on page load
 
 async function fetchSongs() {
-    try {
-        const response = await fetch('api/songs');
-        const data = await response.json();
-        if (lastUpdate === data.last_update) {
-            console.log('No changes detected, skipping update.');
-            return; // No changes, skip updating the list
+    // try {
+    //     const response = await fetch('api/songs');
+    //     const data = await response.json();
+    //     if (lastUpdate === data.last_update) {
+    //         console.log('No changes detected, skipping update.');
+    //         return; // No changes, skip updating the list
+    //     }
+    //     lastUpdate = data.last_update;
+
+    //     const songs = data.songs;
+
+    //     songList.innerHTML = ''; // Clear existing list
+    //     songs.forEach(song => {
+    //         const li = createSongElement(song);
+    //         songList.appendChild(li);
+    //         console.log(song);
+    //     });
+    // } catch (err) {
+    //     console.error('Error fetching songs:', err);
+    // }
+
+    let url = !lastUpdate
+        ? 'api/songs'
+        : `api/songs/changes?since=${encodeURIComponent(lastUpdate)}`;
+
+        console.log(`Fetching from URL: ${url}`);
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.changes && data.changes.length === 0) return; // No changes, skip updating the list
+
+            const songs = data.songs || data.changes;
+
+            songs.forEach(song => {
+                let li = document.querySelector(`li[data-id='${song.id}']`);
+                if (li) {
+                    li.textContent = song.name; // Update existing song
+                } else {
+                    li = createSongElement(song);
+                    songList.appendChild(li); // Add new song
+                }
+            });
+
+            lastUpdate = data.last_update;
+        } catch (err) {
+            console.error('Error fetching songs:', err);
         }
-        lastUpdate = data.last_update;
 
-        const songs = data.songs;
-
-        songList.innerHTML = ''; // Clear existing list
-        songs.forEach(song => {
-            const li = createSongElement(song);
-            songList.appendChild(li);
-            console.log(song);
-        });
-    } catch (err) {
-        console.error('Error fetching songs:', err);
-    }
+      
 }
 
 function createSongElement(song) {
