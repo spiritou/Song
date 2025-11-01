@@ -85,6 +85,7 @@ async function fetchSongs() {
 
 function createSongElement(song) {
     const li = document.createElement('li');
+    li.dataset.id = song.id;
     li.textContent = song.name;
 
     const deleteBtn = document.createElement('button');
