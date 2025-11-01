@@ -81,7 +81,12 @@ class Songcontroller
         $since = $_GET['since'];
         $changes = $this->songModel->getChangesSince($since);
 
-        
+        $last_update = $this->songModel->getLastUpdate();
+
+        echo json_encode([
+            'changes' => $changes,
+            'last_update' => $last_update
+        ]);
 
     }
 }
