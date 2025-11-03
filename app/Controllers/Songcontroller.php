@@ -1,4 +1,5 @@
 <?php
+/* The store function will have to be refactored in order to return the whole newly added song */
 
 namespace App\Controllers;
 
