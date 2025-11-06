@@ -14,10 +14,12 @@ button.addEventListener('click', async () => {
             body: JSON.stringify({ name: songName })
         });
 
+        if (!response.ok) throw new Error('Failed to save the song');
+
         const data = await response.json();
         if (data.error) return alert(data.error);
 
-        const newSong = {name: songName};
+        const newSong = data.song;
         const li = createSongElement(newSong);
         songList.appendChild(li);
         
