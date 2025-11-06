@@ -32,7 +32,14 @@ class Songcontroller
         }
 
         $id = $this->songModel->save($name);
-        echo json_encode(['success' => true, 'message' => 'Song added successfully']);
+
+        $song = $this->songModel->find($id);
+
+        echo json_encode([
+            'success' => true, 
+            'message' => 'Song added successfully',
+            'song' => $song
+        ]);
     }
 
     public function getAllsongs()
