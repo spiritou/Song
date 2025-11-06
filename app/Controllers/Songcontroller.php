@@ -31,7 +31,7 @@ class Songcontroller
             return;
         }
 
-        $this->songModel->save($name);
+        $id = $this->songModel->save($name);
         echo json_encode(['success' => true, 'message' => 'Song added successfully']);
     }
 
