@@ -17,7 +17,8 @@ class Song {
     {
         $stmt = $this->conn->prepare("INSERT INTO songs (name) VALUES (:name)");
         $stmt->bindParam(':name', $name);
-        return $stmt->execute();
+        $stmt->execute();
+        return $this->conn->lastInsertId();
     }
 
     public function getAll() 
