@@ -51,7 +51,6 @@ async function fetchSongs() {
             songs.forEach(song => {
                 let li = document.querySelector(`li[data-id='${song.id}']`);
                 if (li) {
-                    // li.textContent = song.name; // Update existing song
                     const updatedLi = createSongElement(song);
                     li.replaceWith(updatedLi);
                 } else {
