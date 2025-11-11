@@ -54,7 +54,7 @@ class Song {
     public function getChangesSince($since)
     {
         $stmt = $this->conn->prepare("
-        SELECT id, name, last_update
+        SELECT id, name, last_update, deleted_songs
         FROM songs
         WHERE last_update > :since
         ORDER BY last_update DESC
