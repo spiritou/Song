@@ -23,7 +23,7 @@ class Song {
 
     public function getAll() 
     {
-        $stmt = $this->conn->prepare("SELECT * FROM songs ORDER BY last_update DESC");
+        $stmt = $this->conn->prepare("SELECT * FROM songs WHERE deleted_songs = 0 ORDER BY last_update DESC");
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }   
