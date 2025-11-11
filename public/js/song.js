@@ -49,7 +49,12 @@ async function fetchSongs() {
             const songs = data.songs || data.changes;
 
             songs.forEach(song => {
-                let li = document.querySelector(`li[data-id='${song.id}']`);
+                const li = document.querySelector(`li[data-id='${song.id}']`);
+
+                if (song.deleted_songs) {
+                    if (li) li.remove(); // Remove deleted song from the list
+                    return;
+                }
                 if (li) {
                     const updatedLi = createSongElement(song);
                     li.replaceWith(updatedLi);
