@@ -30,7 +30,7 @@ class Song {
 
     public function delete($id) 
     {
-        $stmt = $this->conn->prepare("DELETE FROM songs WHERE id = :id");
+        $stmt = $this->conn->prepare("UPDATE songs SET deleted_songs = 1, last_update = NOW() WHERE id = :id");
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
