@@ -31,16 +31,17 @@ button.addEventListener('click', async () => {
 
 // Fetch and display existing songs on page load
 
-async function fetchSongs() {
+async function longPoll() {
  
 
-    let url = !lastUpdate
-        ? 'api/songs'
-        : `api/songs/changes?since=${encodeURIComponent(lastUpdate)}`;
-
-        console.log(`Fetching from URL: ${url}`);
+  
 
         try {
+            let url = !lastUpdate
+            ? 'api/songs'
+            : `api/songs/changes?since=${encodeURIComponent(lastUpdate)}`;
+
+            console.log(`Fetching from URL: ${url}`);
             const response = await fetch(url);
             const data = await response.json();
 
@@ -67,6 +68,8 @@ async function fetchSongs() {
             lastUpdate = data.last_update;
         } catch (err) {
             console.error('Error fetching songs:', err);
+        } finally {
+            longPoll(); // Restart long polling
         }
 
       
@@ -154,19 +157,19 @@ function createSongElement(song) {
     return li;
 }
 
-let pollingInterval;
+// let pollingInterval;
 
-function startPolling() {
-    stopPolling();
-    pollingInterval = setInterval(fetchSongs, 5000); // 5 seconds
-}
+// function startPolling() {
+//     stopPolling();
+//     pollingInterval = setInterval(fetchSongs, 5000); // 5 seconds
+// }
 
-function stopPolling() {
-    clearInterval(pollingInterval);
-}
+// function stopPolling() {
+//     clearInterval(pollingInterval);
+// }
 
-fetchSongs();
-startPolling();
+longPoll();
+// startPolling();
 
 //now moving to long polling
 
