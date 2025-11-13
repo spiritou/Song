@@ -67,9 +67,9 @@ async function longPoll() {
 
             lastUpdate = data.last_update;
         } catch (err) {
-            console.error('Error fetching songs:', err);
+            console.error(`Error during long polling (${new Date().toISOString()}):`, err);
         } finally {
-            longPoll(); // Restart long polling
+            setTimeout(longPoll, 1000); // Restart long polling
         }
 
       
