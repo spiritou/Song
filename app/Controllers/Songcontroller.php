@@ -80,21 +80,45 @@ class Songcontroller
     {
         header('Content-Type: application/json');
         
-        if(!isset($_GET['since']))
-        {
+        // if(!isset($_GET['since']))
+        // {
+        //     echo json_encode(['error' => 'Missing "since" parameter']);
+        //     return;
+        // }
+
+        // $since = $_GET['since'];
+
+        $since = $_GET['since'] ?? null;
+        if (!$since) {
             echo json_encode(['error' => 'Missing "since" parameter']);
             return;
         }
 
-        $since = $_GET['since'];
-        $changes = $this->songModel->getChangesSince($since);
+        $startTime = time();
+        $timeout = 30; // seconds
 
-        $last_update = $this->songModel->getLastUpdate();
+        do {
+             $changes = $this->songModel->getChangesSince($since);
 
-        echo json_encode([
-            'changes' => $changes,
-            'last_update' => $last_update
-        ]);
+             if (!empty($changes)) {
+                echo json_encode([
+                    'changes' => $changes,
+                    'last_update' => $changes[0]['last_update']
+                ]);
+                return;
+             }
+             usleep(500000); // Sleep for 0.5 seconds
+        } while (time() - $startTime < $timeout);
+
+        echo json_encode(['changes' => []]);
+       
+
+        // $last_update = $this->songModel->getLastUpdate();
+
+        // echo json_encode([
+        //     'changes' => $changes,
+        //     'last_update' => $last_update
+        // ]);
 
     }
 }
