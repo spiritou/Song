@@ -111,7 +111,7 @@ function createSongElement(song) {
 
     updateBtn.addEventListener('click', () => {
 
-        stopPolling();
+        // stopPolling();
         const input = document.createElement('input');
         input.type = 'text';
         input.value = song.name;
@@ -129,7 +129,7 @@ function createSongElement(song) {
         li.appendChild(cancelBtn);
 
         saveBtn.addEventListener('click', async () => {
-            startPolling();
+            // startPolling();
             const newName = input.value.trim();
             if (!newName) return alert('Please enter a song name');
 
