@@ -24,5 +24,14 @@ class User {
             ':role' => $role
         ]);
     }
+
+    public function findByUsername($username)
+    {
+        $stmt = $this->conn->prepare("
+            SELECT * FROM users WHERE name = :name LIMIT 1
+        ");
+        $stmt->execute([':name' => $username]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
         
 }
