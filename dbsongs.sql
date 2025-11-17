@@ -36,18 +36,7 @@ CREATE TABLE `songs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `songs`
---
 
-INSERT INTO `songs` (`id`, `name`, `last_update`, `deleted_songs`, `users_id`) VALUES
-(72, 'We are one', '2025-11-11 22:45:49', 1, NULL),
-(74, 'never say never', '2025-11-13 19:21:57', 1, NULL),
-(76, 'moves', '2025-11-11 22:42:48', 1, NULL),
-(77, 'Yess', '2025-11-13 04:42:38', 1, NULL),
-(78, 'only God can judge me', '2025-11-15 14:52:44', 0, NULL),
-(79, 'sexy red', '2025-11-15 14:52:14', 0, NULL);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
