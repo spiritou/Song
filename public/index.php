@@ -11,10 +11,12 @@ require_once __DIR__ . '/../config/config.php';
 Use App\Core\Router;
 use App\Controllers\Songcontroller;
 use App\Core\Container;
+use App\Controllers\Authenticationcontroller;
 
 $container = new Container();
 $router = $container->get(Router::class);
-$router->get('/', 'Songcontroller@index');
+$router->get('/', 'Authenticationcontroller@login');
+//$router->get('/', 'Songcontroller@index');
 $router->post('/api/songs', 'Songcontroller@store');
 $router->get('/api/songs', 'Songcontroller@getAllsongs');
 $router->get('/api/songs/changes', 'Songcontroller@getChanges');
