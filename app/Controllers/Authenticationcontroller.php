@@ -33,5 +33,7 @@ class Authenticationcontroller
             echo json_encode(['error' => 'Invalid name or password']);
             return;
         }
+
+        
     }
 }
