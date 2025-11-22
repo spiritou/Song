@@ -1,6 +1,6 @@
 // the javascript code for login page
 
-document.getElementById('loginForm').addEventListner('submit', async (e) => {
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const username = document.getElementById('name').value.trim();
     const password = document.getElementById('password').value.trim();
@@ -9,7 +9,7 @@ document.getElementById('loginForm').addEventListner('submit', async (e) => {
         return alert('Please enter both username and password');
     }
 
-        const response = await fetch('/api/login', {
+        const response = await fetch('api/login', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({ username, password})

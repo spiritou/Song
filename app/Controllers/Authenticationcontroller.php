@@ -6,12 +6,16 @@ use App\Models\User;
 class Authenticationcontroller 
 {
     private $usermodel;
+    public function __construct(User $usermodel)
+    {
+       $this->usermodel = $usermodel;
+    }
     public function index()
     {
         require_once __DIR__ . '/../Views/loginform.php';
     }
 
-    public function login(User $usermodel)
+    public function login()
     {
         // Handle login logic here
         header('Content-Type: application/json');
@@ -24,5 +28,10 @@ class Authenticationcontroller
         }
 
         $user = $this->usermodel->findByUsername($data['name']);
+        if(!$user || !password_verify($data['password'], $user['password'])) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Invalid name or password']);
+            return;
+        }
     }
 }
