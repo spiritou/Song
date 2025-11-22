@@ -15,7 +15,7 @@ use App\Controllers\Authenticationcontroller;
 
 $container = new Container();
 $router = $container->get(Router::class);
-$router->get('/', 'Authenticationcontroller@login');
+$router->get('/', 'Authenticationcontroller@index');
 //$router->get('/', 'Songcontroller@index');
 $router->post('/api/songs', 'Songcontroller@store');
 $router->get('/api/songs', 'Songcontroller@getAllsongs');
