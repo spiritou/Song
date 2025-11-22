@@ -18,7 +18,7 @@ $container = new Container();
 $router = $container->get(Router::class);
 $router->get('/', 'Authenticationcontroller@index');
 $router->post('/api/login', 'Authenticationcontroller@login');
-//$router->get('/', 'Songcontroller@index');
+$router->get('homepage', 'Songcontroller@index');
 $router->post('/api/songs', 'Songcontroller@store');
 $router->get('/api/songs', 'Songcontroller@getAllsongs');
 $router->get('/api/songs/changes', 'Songcontroller@getChanges');

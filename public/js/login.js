@@ -17,7 +17,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
         const data = await response.json();
         if (data.success) {
-            window.location.href = '/dashboard'; // redirect to dashboard or home page
+            window.location.href = 'homepage'; // redirect to dashboard or home page
         } else {
             alert(data.error || 'Login failed');
         }
