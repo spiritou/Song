@@ -19,7 +19,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const data = await response.json();
         if (data.success) {
             console.log('Login successful');
-            window.location.href = '/homepage'; // redirect to dashboard or home page
+            window.location.href = 'homepage'; // redirect to dashboard or home page
         } else {
             alert(data.error || 'Login failed');
         }
