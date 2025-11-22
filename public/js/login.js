@@ -8,6 +8,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     if (!username || !password) {
         return alert('Please enter both username and password');
     }
+        console.log('Attempting login with', username, password);
 
         const response = await fetch('api/login', {
             method: 'POST',
@@ -17,7 +18,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
         const data = await response.json();
         if (data.success) {
-            window.location.href = 'homepage'; // redirect to dashboard or home page
+            //window.location.href = 'homepage'; // redirect to dashboard or home page
+            console.log('Login successful');
         } else {
             alert(data.error || 'Login failed');
         }

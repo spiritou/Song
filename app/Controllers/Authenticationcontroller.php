@@ -21,13 +21,13 @@ class Authenticationcontroller
         header('Content-Type: application/json');
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if(!$data || empty($data['name']) || empty($data['password'])) {
+        if(!$data || empty($data['username']) || empty($data['password'])) {
             http_response_code(400);
             echo json_encode(['error' => 'Name and password are required']);
             return;
         }
 
-        $user = $this->usermodel->findByUsername($data['name']);
+        $user = $this->usermodel->findByUsername($data['username']);
         if(!$user || !password_verify($data['password'], $user['password'])) {
             http_response_code(401);
             echo json_encode(['error' => 'Invalid name or password']);
