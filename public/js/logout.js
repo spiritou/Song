@@ -9,7 +9,9 @@ document.getElementById('LogoutBtn').addEventListener('click', async () => {
 
         if (data.success) {
             console.log('Logout successful');
-            window.location.href = '/'; // redirect to login page
+            // Redirect to login page using APP_URL if available, otherwise use relative path
+            const redirectUrl = typeof APP_URL !== 'undefined' ? APP_URL : '/Song/public/';
+            window.location.href = redirectUrl;
         } else {
             alert(data.error || 'Logout failed');
         }

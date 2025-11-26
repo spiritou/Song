@@ -11,9 +11,9 @@
     <button id="addBtn">add</button>
     <ul id="songList"></ul>
     <button id="LogoutBtn">Logout</button>
-    <!-- <script>
+    <script>
          const APP_URL = "<?= $_ENV['APP_URL'] ?>";
-    </script> -->
+    </script>
     <script src="js/song.js"></script>
     <script src="js/logout.js"></script>
 </body>
