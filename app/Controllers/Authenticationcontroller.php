@@ -40,4 +40,12 @@ class Authenticationcontroller
 
         echo json_encode(['success' => true]);
     }
+
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+
+        echo json_encode(['success' => true]);
+    }
 }
