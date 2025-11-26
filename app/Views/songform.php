@@ -15,5 +15,6 @@
          const APP_URL = "<?= $_ENV['APP_URL'] ?>";
     </script> -->
     <script src="js/song.js"></script>
+    <script src="js/logout.js"></script>
 </body>
 </html>
