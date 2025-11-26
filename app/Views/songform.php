@@ -10,6 +10,7 @@
     <input type="text" id="songName" placeholder="Enter song name">
     <button id="addBtn">add</button>
     <ul id="songList"></ul>
+    <button id="LogoutBtn">Logout</button>
     <!-- <script>
          const APP_URL = "<?= $_ENV['APP_URL'] ?>";
     </script> -->
