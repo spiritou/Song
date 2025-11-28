@@ -66,6 +66,13 @@ class Songcontroller
 
     public function update($id)
     {
+        header('Content-Type: application/json');
+        
+        // Release session lock early since we don't need to modify session data
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+        }
+        
         $data = json_decode(file_get_contents('php://input'), true);
         $success = $this->songModel->update($id, $data['name']);
         echo json_encode(['success' => $success]);
@@ -80,6 +87,12 @@ class Songcontroller
     {
         header('Content-Type: application/json');
         
+        // Release session lock early to prevent blocking other requests
+        // This is critical for long polling endpoints
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+        }
+
         // if(!isset($_GET['since']))
         // {
         //     echo json_encode(['error' => 'Missing "since" parameter']);

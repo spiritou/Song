@@ -37,7 +37,7 @@ class Song {
 
     public function update($id, $name) 
     {
-        $stmt = $this->conn->prepare("UPDATE songs SET name = :name WHERE id = :id");
+        $stmt = $this->conn->prepare("UPDATE songs SET name = :name, last_update = NOW() WHERE id = :id");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':id', $id);
         return $stmt->execute();

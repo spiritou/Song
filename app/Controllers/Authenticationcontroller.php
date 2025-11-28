@@ -61,6 +61,11 @@ class Authenticationcontroller
             );
         }
 
+        // Explicitly close session to release lock immediately
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+        }
+
         echo json_encode(['success' => true]);
     }
 }
