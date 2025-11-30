@@ -40,11 +40,14 @@ class Song {
         return $stmt->execute();
     }
 
-    public function update($id, $name) 
+    public function update($id, $name, $user_id) 
     {
-        $stmt = $this->conn->prepare("UPDATE songs SET name = :name, last_update = NOW() WHERE id = :id");
+        $stmt = $this->conn->prepare("UPDATE songs 
+        SET name = :name, last_update = NOW() 
+        WHERE id = :id AND users_id = :users_id");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':users_id', $user_id);
         return $stmt->execute();
     }
 

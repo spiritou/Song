@@ -86,7 +86,7 @@ class Songcontroller
           if (session_status() === PHP_SESSION_ACTIVE) {
             session_write_close();
         }
-        
+
         $user_id = $_SESSION['user_id'];
         $success = $this->songModel->delete($id, $user_id);
         echo json_encode(['success' => $success]);
@@ -95,14 +95,21 @@ class Songcontroller
     public function update($id)
     {
         header('Content-Type: application/json');
+
+        if(!isset($_SESSION['user_id'])) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized']);
+            return;
+        }
         
         // Release session lock early since we don't need to modify session data
         if (session_status() === PHP_SESSION_ACTIVE) {
             session_write_close();
         }
-        
+
+        $user_id = $_SESSION['user_id'];
         $data = json_decode(file_get_contents('php://input'), true);
-        $success = $this->songModel->update($id, $data['name']);
+        $success = $this->songModel->update($id, $data['name'], $user_id);
         echo json_encode(['success' => $success]);
     }
 
