@@ -13,10 +13,11 @@ class Song {
         $this->conn = $conn->getConnection();
     }
 
-    public function save($name) 
+    public function save($user_id,$name) 
     {
-        $stmt = $this->conn->prepare("INSERT INTO songs (name) VALUES (:name)");
+        $stmt = $this->conn->prepare("INSERT INTO songs (name, users_id) VALUES (:name, :users_id)");
         $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':users_id', $user_id);
         $stmt->execute();
         return $this->conn->lastInsertId();
     }
