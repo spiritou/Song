@@ -22,9 +22,10 @@ class Song {
         return $this->conn->lastInsertId();
     }
 
-    public function getAll() 
+    public function getAllSongsbyID($user_id) 
     {
-        $stmt = $this->conn->prepare("SELECT * FROM songs WHERE deleted_songs = 0 ORDER BY last_update DESC");
+        $stmt = $this->conn->prepare("SELECT * FROM songs WHERE deleted_songs = 0 AND users_id :user_id ORDER BY last_update DESC");
+        $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }   

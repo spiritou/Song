@@ -54,7 +54,13 @@ class Songcontroller
     public function getAllsongs()
     {
         header('Content-Type: application/json');
-        $songs = $this->songModel->getAll();
+        if(!isset($_SESSION['user_id'])) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized']);
+            return;
+        }
+        $user_id = $_SESSION['user_id'];
+        $songs = $this->songModel->getAllSongsbyID($user_id);
 
         $last_update = null;
         if (!empty($songs)) {
