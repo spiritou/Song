@@ -23,6 +23,14 @@ class Songcontroller
     
     public function store()
     {
+        header('Content-Type: application/json');
+
+        if(!isset($_SESSION['user_id'])) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized']);
+            return;
+        }
+
         $data = json_decode(file_get_contents('php://input'), true);
         $name = $data['name'] ?? null;
         if(trim($name) === '') {
@@ -30,8 +38,9 @@ class Songcontroller
             echo json_encode(['error' => 'Song name is required']);
             return;
         }
+        $user_id = $_SESSION['user_id'];
 
-        $id = $this->songModel->save($name);
+        $id = $this->songModel->save($user_id,$name);
 
         $song = $this->songModel->find($id);
 
