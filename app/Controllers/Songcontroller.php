@@ -75,7 +75,20 @@ class Songcontroller
 
     public function delete($id)
     {
-        $success = $this->songModel->delete($id);
+        header('Content-Type: application/json');
+
+        if(!isset($_SESSION['user_id'])) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized']);
+            return;
+        }
+
+          if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+        }
+        
+        $user_id = $_SESSION['user_id'];
+        $success = $this->songModel->delete($id, $user_id);
         echo json_encode(['success' => $success]);
     }
 

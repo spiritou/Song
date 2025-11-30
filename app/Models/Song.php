@@ -30,10 +30,13 @@ class Song {
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }   
 
-    public function delete($id) 
+    public function delete($id, $user_id) 
     {
-        $stmt = $this->conn->prepare("UPDATE songs SET deleted_songs = 1, last_update = NOW() WHERE id = :id");
+        $stmt = $this->conn->prepare("UPDATE songs 
+        SET deleted_songs = 1, last_update = NOW() 
+        WHERE id = :id AND users_id = :users_id");
         $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':users_id', $user_id);
         return $stmt->execute();
     }
 
