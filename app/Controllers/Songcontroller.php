@@ -146,7 +146,8 @@ class Songcontroller
         $timeout = 30; // seconds
 
         do {
-             $changes = $this->songModel->getChangesSince($since);
+            $user_id = $_SESSION['user_id'];
+             $changes = $this->songModel->getChangesSince($since, $user_id);
 
              if (!empty($changes)) {
                 echo json_encode([
