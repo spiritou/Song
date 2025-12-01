@@ -135,7 +135,7 @@ class Songcontroller
         // }
 
         // $since = $_GET['since'];
-
+        $user_id = $_SESSION['user_id'];
         $since = $_GET['since'] ?? null;
         if (!$since) {
             echo json_encode(['error' => 'Missing "since" parameter']);
@@ -146,7 +146,7 @@ class Songcontroller
         $timeout = 30; // seconds
 
         do {
-            $user_id = $_SESSION['user_id'];
+            
              $changes = $this->songModel->getChangesSince($since, $user_id);
 
              if (!empty($changes)) {
