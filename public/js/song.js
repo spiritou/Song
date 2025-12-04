@@ -69,7 +69,8 @@ async function longPoll() {
         } catch (err) {
             console.error(`Error during long polling (${new Date().toISOString()}):`, err);
         } finally {
-            setTimeout(longPoll, 1000); // Restart long polling
+            //setTimeout(longPoll, 1000); // Restart long polling
+            longPoll();
         }
 
       
