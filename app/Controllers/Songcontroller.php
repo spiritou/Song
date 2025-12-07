@@ -54,6 +54,8 @@ class Songcontroller
     public function getAllsongs()
     {
         header('Content-Type: application/json');
+
+        
         if(!isset($_SESSION['user_id'])) {
             http_response_code(401);
             echo json_encode(['error' => 'Unauthorized']);
@@ -62,8 +64,10 @@ class Songcontroller
         $user_id = $_SESSION['user_id'];
         $songs = $this->songModel->getAllSongsbyID($user_id);
 
-        $last_update = null;
-        if (!empty($songs)) {
+        //$last_update = null;
+        if (empty($songs)) {
+            $last_update = date('Y-m-d H:i:s');
+        } else {
             $last_update = $songs[0]['last_update'];
         }
 
@@ -71,6 +75,7 @@ class Songcontroller
             'songs' => $songs, 
             'last_update' => $last_update
         ]);
+
     }
 
     public function delete($id)
