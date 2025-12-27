@@ -55,15 +55,16 @@ class Songcontroller
     public function getAllsongs()
     {
         header('Content-Type: application/json');
+        Auth::requireLogin();
 
-        
-        if(!isset($_SESSION['user_id'])) {
-            http_response_code(401);
-            echo json_encode(['error' => 'Unauthorized']);
-            return;
-        }
+        $role = $_SESSION['user_role'];
         $user_id = $_SESSION['user_id'];
-        $songs = $this->songModel->getAllSongsbyID($user_id);
+        
+        if ($role === 'admin') {
+            $songs = $this->songModel->AdminGetAllSongs();
+        } else {
+            $songs = $this->songModel->getAllSongsbyID($user_id);
+        }
 
         //$last_update = null;
         if (empty($songs)) {
@@ -177,17 +178,5 @@ class Songcontroller
         //     'last_update' => $last_update
         // ]);
 
-    }
-
-    public function AdminAllSongs()
-    {
-        Auth::requireRole('admin');
-        header('Content-Type: application/json');
-
-        $songs = $this->songModel->AdminGetAllSongs();
-
-        echo json_encode([
-            'songs' => $songs
-        ]);
     }
 }
