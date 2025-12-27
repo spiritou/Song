@@ -82,7 +82,7 @@ class Songcontroller
 
     public function delete($id)
     {
-        Auth::requireRole('admin');
+        Auth::requireRole('user');
         header('Content-Type: application/json');
         $user_id = $_SESSION['user_id'];
 
