@@ -84,5 +84,15 @@ class Song {
         return $result['latest'] ?? null;
     }
 
+    public function AdminGetAllSongs()
+    {
+        $stmt = $this->conn->prepare("
+            SELECT id, name, users_id, last_update, deleted_songs
+            FROM songs 
+            ORDER BY last_update DESC
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
     
 }
