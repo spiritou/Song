@@ -178,4 +178,16 @@ class Songcontroller
         // ]);
 
     }
+
+    public function AdminAllSongs()
+    {
+        Auth::requireRole('admin');
+        header('Content-Type: application/json');
+
+        $songs = $this->songModel->AdminGetAllSongs();
+
+        echo json_encode([
+            'songs' => $songs
+        ]);
+    }
 }

@@ -22,6 +22,7 @@ $router->post('/api/logout', 'Authenticationcontroller@logout');
 $router->get('/homepage', 'Songcontroller@index');
 $router->post('/api/songs', 'Songcontroller@store');
 $router->get('/api/songs', 'Songcontroller@getAllsongs');
+$router->get('/api/admin/songs', 'Songcontroller@adminGetAllSongs');
 $router->get('/api/songs/changes', 'Songcontroller@getChanges');
 $router->delete('/api/songs/{id}', 'Songcontroller@delete');
 $router->put('/api/songs/{id}', 'Songcontroller@update');
